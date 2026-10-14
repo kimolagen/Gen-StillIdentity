@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+.c-sectionTitle {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4em;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: normal;
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-tight);
+  color: var(--color-text);
+}
+
+.c-sectionTitle__mark {
+  color: var(--color-text-weak);
+  font-size: 0.78em;
+  letter-spacing: -0.04em;
+}
+
+.c-sectionTitle--start {
+  justify-content: flex-start;
+}
+
+.c-sectionTitle--sub {
+  font-size: var(--fs-lg);
+  letter-spacing: 0.02em;
+}
+
+.c-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  color: var(--color-text-weak);
+  line-height: 1;
+}
+
+.c-label::after {
+  content: "";
+  display: block;
+  width: clamp(1.5rem, 4vw, 4rem);
+  height: 1px;
+  background-color: var(--color-line);
+}
+
+.c-label--noRule::after {
+  display: none;
+}
+
+.c-lead {
+  font-family: var(--font-serif);
+  font-size: var(--fs-md);
+  line-height: 2.1;
+  letter-spacing: 0.06em;
+  color: var(--color-text);
+}
+
+.c-text {
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  color: var(--color-text);
+  max-width: 42em;
+}
+
+.c-text--weak {
+  color: var(--color-text-weak);
+}
+
+.c-text p + p {
+  margin-top: 1.4em;
+}
+
+.c-sectionHead {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-6);
+  text-align: center;
+}
+
+.c-sectionHead--start {
+  justify-items: start;
+  text-align: left;
+}
+
+.c-sectionHead .c-label {
+  font-size: var(--fs-sm);
+  letter-spacing: 0.2em;
+  color: var(--color-text);
+}
+
+@media (min-width: 1024px) {
+  .c-sectionHead .c-label {
+    position: absolute;
+
+    left: clamp(2rem, 2.6vw, 4rem);
+    top: var(--space-section);
+    transform-origin: left top;
+
+    transform: rotate(90deg) translateX(var(--label-shift, -1.25rem));
+    white-space: nowrap;
+    font-size: 1rem;
+    letter-spacing: 0.26em;
+    pointer-events: none;
+
+    opacity: 0;
+    filter: blur(var(--label-blur, 8px));
+    transition:
+      opacity var(--dur-slow) var(--ease),
+      filter var(--dur-slow) var(--ease),
+      transform var(--dur-slow) var(--ease);
+  }
+
+  .c-sectionHead .c-label::after {
+    width: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .c-sectionHead .c-label.is-inview {
+    opacity: 1;
+    filter: blur(0);
+    --label-shift: 0rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-sectionHead .c-label {
+    opacity: 1;
+    filter: none;
+    transition: none;
+    --label-shift: 0rem;
+  }
+}

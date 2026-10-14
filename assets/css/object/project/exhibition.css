@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+.p-exhibition {
+  --glow-x: 30%;
+  --glow-y: 70%;
+  --glow-x2: 74%;
+  --glow-y2: 24%;
+}
+
+.p-exhibition__date {
+  margin-top: var(--space-12);
+  font-family: var(--font-display);
+
+  font-variant-numeric: tabular-nums slashed-zero;
+  font-size: clamp(1.75rem, 1rem + 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: var(--color-text-weak);
+  text-align: center;
+
+}
+
+.p-exhibition__dateMain,
+.p-exhibition__dateTime {
+  display: inline-block;
+}
+
+.p-exhibition__dateTime {
+  margin-left: 0.6em;
+  color: var(--color-text);
+}
+
+.p-exhibition__venue {
+  font-family: var(--font-ui);
+  margin-top: var(--space-3);
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--color-text-weak);
+}
+
+.p-exhibition__detail {
+  margin-top: var(--space-16);
+  display: grid;
+  justify-items: center;
+}
+
+.p-exhibition__ticket {
+  margin-top: var(--space-16);
+  display: grid;
+  justify-items: center;
+  gap: var(--space-6);
+}
+
+.p-exhibition__ticketLead {
+  font-family: var(--font-ui);
+  text-align: center;
+  font-size: var(--fs-sm);
+  color: var(--color-text-weak);
+}
+
+.p-exhibition__embed {
+  width: 100%;
+  max-width: 46rem;
+  margin-top: var(--space-8);
+}
+
+.p-exhibition__notes {
+  font-family: var(--font-ui);
+  margin-top: var(--space-8);
+  max-width: 46rem;
+  margin-inline: auto;
+  font-size: var(--fs-xs);
+  line-height: 2;
+  color: var(--color-text-weak);
+}
+
+.p-exhibition__notes li {
+  position: relative;
+  padding-left: 1.2em;
+}
+
+.p-exhibition__notes li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-line);
+}
+
+.p-exhibition__coming {
+  margin-top: var(--space-16);
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.p-exhibition__comingLabel {
+  font-family: var(--font-mono);
+
+  font-size: var(--fs-xl);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  line-height: var(--lh-tight);
+
+  padding-block: var(--space-4);
+  border-block: 1px solid var(--color-line);
+  padding-inline: var(--space-12) calc(var(--space-12) - 0.32em);
+}
+
+.p-exhibition__comingNote {
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+  line-height: 2;
+  color: var(--color-text-weak);
+  max-width: 34em;
+}

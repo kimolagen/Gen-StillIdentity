@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+.c-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(var(--reveal-blur, 9px));
+
+  will-change: opacity, transform;
+  transition:
+    opacity var(--dur-slow) var(--ease),
+    transform var(--dur-slow) var(--ease),
+    filter var(--dur-slow) var(--ease);
+}
+
+.c-reveal.is-inview {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.c-reveal.is-inview {
+  will-change: auto;
+}
+
+.c-reveal--d1 { transition-delay: 0.08s; }
+.c-reveal--d2 { transition-delay: 0.16s; }
+.c-reveal--d3 { transition-delay: 0.24s; }
+.c-reveal--d4 { transition-delay: 0.32s; }
+
+.c-reveal--fade {
+  transform: none;
+}
+
+.c-reveal--ink {
+  transform: none;
+  filter: blur(14px);
+  transition:
+    opacity 1.6s var(--ease),
+    filter 1.6s var(--ease);
+}
+
+.c-reveal--ink.is-inview {
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-reveal,
+  .c-reveal--ink {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.no-js .c-reveal {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}

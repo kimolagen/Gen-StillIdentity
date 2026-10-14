@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+.c-stalker {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-stalker);
+  width: 100%;
+  height: 100%;
+
+  pointer-events: none;
+
+  filter: blur(7px) contrast(10) brightness(1.02);
+
+  mix-blend-mode: screen;
+
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease);
+}
+
+.c-stalker.is-active {
+  opacity: 1;
+}
+
+.c-stalker.is-light {
+  mix-blend-mode: multiply;
+  filter: blur(7px) contrast(8) brightness(1.02);
+}
+
+.c-grain {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-stalker) + 1);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  mix-blend-mode: screen;
+
+  opacity: var(--grain-opacity, 0.05);
+  transition: opacity 0.35s var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-stalker,
+  .c-grain {
+    display: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .c-stalker {
+    display: none;
+  }
+}

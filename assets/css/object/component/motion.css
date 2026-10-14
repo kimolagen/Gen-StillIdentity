@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+@keyframes c-breathe {
+  0%   { transform: scale(1);      opacity: 0.94; }
+  50%  { transform: scale(1.035);  opacity: 1;    }
+  100% { transform: scale(1);      opacity: 0.94; }
+}
+
+.c-breathe {
+  animation: c-breathe 26s ease-in-out infinite;
+
+  transform-origin: 42% 55%;
+}
+
+.c-breathe--slow {
+  animation-duration: 34s;
+  animation-direction: alternate;
+  transform-origin: 58% 45%;
+}
+
+@keyframes c-driftX {
+  0%   { transform: translate3d(-2.5%, 0, 0); }
+  50%  { transform: translate3d(2.5%, -1%, 0); }
+  100% { transform: translate3d(-2.5%, 0, 0); }
+}
+
+@property --glow-moss-a {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.55;
+}
+
+@keyframes c-glowPulse {
+  0%   { --glow-moss-a: 0.40; }
+  50%  { --glow-moss-a: 0.72; }
+  100% { --glow-moss-a: 0.40; }
+}
+
+.l-section::before {
+  animation-name: c-driftX, c-glowPulse;
+  animation-duration: 60s, 19s;
+  animation-timing-function: ease-in-out, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+
+.l-section:nth-of-type(odd)::before {
+  animation-direction: reverse, normal;
+  animation-duration: 74s, 23s;
+}
+
+.c-splitChar {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.24em);
+  filter: blur(6px);
+
+  transition:
+    opacity 0.7s var(--ease) calc(var(--i, 0) * 40ms),
+    transform 0.7s var(--ease) calc(var(--i, 0) * 40ms),
+    filter 0.7s var(--ease) calc(var(--i, 0) * 40ms);
+}
+
+.c-splitChar--space {
+  white-space: pre;
+}
+
+.is-inview .c-splitChar,
+.c-splitChar.is-inview {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@keyframes c-tick {
+  0%   { transform: translateY(-0.5em); opacity: 0; filter: blur(3px); }
+  60%  { transform: translateY(0.04em); opacity: 1; filter: blur(0); }
+  100% { transform: translateY(0);      opacity: 1; filter: blur(0); }
+}
+
+.c-tick {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+.c-tick.is-ticking {
+  animation: c-tick 0.42s var(--ease);
+}
+
+.m-off-breathe .c-breathe { animation: none; }
+
+.m-off-drift .l-section::before     { animation-name: c-glowPulse; animation-duration: 19s; }
+.m-off-glowPulse .l-section::before { animation-name: c-driftX; }
+.m-off-drift.m-off-glowPulse .l-section::before { animation: none; }
+.m-off-counterTick .c-tick.is-ticking { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .c-breathe,
+  .l-section::before,
+  .c-tick.is-ticking {
+    animation: none !important;
+  }
+
+  .c-splitChar {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}

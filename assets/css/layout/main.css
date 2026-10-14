@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+.l-main {
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.l-section {
+  position: relative;
+  padding-block: var(--space-section);
+  isolation: isolate;
+}
+
+.l-section::before {
+  content: "";
+  position: absolute;
+
+  inset: -2px 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+
+    radial-gradient(
+      60% 42% at var(--glow-x, 28%) var(--glow-y, 30%),
+
+      rgb(var(--glow-moss-rgb) / var(--glow-moss-a)) 0%,
+      transparent 68%
+    ),
+
+    radial-gradient(
+      52% 38% at var(--glow-x2, 78%) var(--glow-y2, 72%),
+      var(--glow-sand) 0%,
+      transparent 70%
+    ),
+
+    linear-gradient(
+      180deg,
+      var(--surface-0) 0%,
+      var(--surface-1) 42%,
+      var(--surface-1) 58%,
+      var(--surface-0) 100%
+    );
+}
+
+.l-section + .l-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(239, 239, 233, 0.13) 30%,
+    rgba(239, 239, 233, 0.13) 70%,
+    transparent 100%
+  );
+}
+
+.l-section--flush {
+  padding-block: 0;
+}
+
+.l-section--tight {
+  padding-block: clamp(3rem, 2rem + 5vw, 7rem);
+}
+
+.l-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+.l-container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.l-container--full {
+  max-width: none;
+  padding-inline: 0;
+}
